@@ -4,22 +4,23 @@ DOMAIN_FILE1 = 'r:\\blocked1.txt'
 DOMAIN_FILE2 = 'r:\\blocked2.txt'
 OUTPUT_FILE = 'r:\\blocked.txt'
 
-def getDomainsFromFile(fileName):
-    f = open(fileName, 'r')
+
+def get_domains_from_file(filename):
+    f = open(filename, 'r')
     domains = f.readlines()
     f.close()
     return domains
 
-def saveDomainsToFile(fileName, domains):
+
+def save_domains_to_file(filename, domains):
     domains = [x if x.endswith('\n') else x + '\n' for x in domains]
-    f = open(fileName, 'w')
+    f = open(filename, 'w')
     f.writelines(domains)
     f.close()
 
 
-
 if __name__ == '__main__':
-    domains1 = getDomainsFromFile(DOMAIN_FILE1)
-    domains2 = getDomainsFromFile(DOMAIN_FILE2)
-    domains = list(set(domains1).union(set(domains2)))
-    saveDomainsToFile(OUTPUT_FILE, domains)
+    domains1 = get_domains_from_file(DOMAIN_FILE1)
+    domains2 = get_domains_from_file(DOMAIN_FILE2)
+    out_domains = list(set(domains1).union(set(domains2)))
+    save_domains_to_file(OUTPUT_FILE, out_domains)
