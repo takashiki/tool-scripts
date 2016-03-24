@@ -23,7 +23,7 @@ def gen_table(threshold):
         else:
             table.append(1)
     return table
-        
+
 def image_to_number(img):
     number = 0
     max_count = 0
@@ -37,7 +37,7 @@ def image_to_number(img):
             max_count = count
             number = i
     return number
-        
+
 
 def image_to_string(img):
     enhancer = img.convert('L')
@@ -57,7 +57,7 @@ def login_and_sign(username, password):
 
     data = {'username': username, 'password': password}
     opener.open('https://vnet.link/login_do', urllib.urlencode(data))
-    
+
     res = opener.open('https://vnet.link/openapi/v1/regcode?action=checkcode')
     image = Image.open(io.BytesIO(res.read()))
     code = image_to_string(image)
