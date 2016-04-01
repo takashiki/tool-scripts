@@ -26,9 +26,11 @@ def ping(host):
         ('baidu.com', '123.125.114.144', 70, 0)
     """
     os_name = os.name
+    encode = 'utf-8'
     # 根据系统平台设置 ping 命令
     if os_name == 'nt':  # windows
         cmd = 'ping ' + host
+        encode = 'gbk'
     else:  # unix/linux
         cmd = 'ping -c 4 ' + host
 
@@ -41,7 +43,7 @@ def ping(host):
 
     # 替换换行符，因为在正则表达式中
     # 'a$' 匹配 'a\r\n' 中的 'a\r'
-    text = out.decode('utf-8').replace('\r\n', '\n').replace('\r', '\n')
+    text = out.decode(encode).replace('\r\n', '\n').replace('\r', '\n')
 
     # 使用正则匹配 ip 地址: [192.168.1.1] (192.168.1.1)
     ip = re.findall(r'(?<=\(|\[)\d+\.\d+\.\d+\.\d+(?=\)|\])', text)
