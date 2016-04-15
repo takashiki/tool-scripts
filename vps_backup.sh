@@ -14,6 +14,7 @@ readonly QSHELL="/usr/bin/qshell"
 readonly QINIU_BUCKET="backup"
 ######~Set Directory you want to backup~######
 readonly BACKUP_DIR=("/data/wwwroot/dir" "/data/wwwroot/dir2")
+readonly EXCLUDE_DIR=("vendor")
 
 ######~Set MySQL Database you want to backup~######
 readonly BACKUP_DB=("db" "db2")
@@ -33,7 +34,7 @@ function backup_archive()
     local backup_path=$1
     local dir_name=`echo ${backup_path##*/}`
     local pre_dir=`echo ${backup_path}|sed 's/'${dir_name}'//g'`
-    tar zcf ${CURRENT_BACKUP_HOME}${dir_name}-${BACKUP_TIME}.tar.gz -C ${pre_dir} ${dir_name}
+    tar zcf ${CURRENT_BACKUP_HOME}${dir_name}-${BACKUP_TIME}.tar.gz -C ${pre_dir} ${dir_name} --exclude-dir=${EXCLUDE_DIR}
 }
 
 function backup_sql()
