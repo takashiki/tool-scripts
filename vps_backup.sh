@@ -34,7 +34,11 @@ function backup_archive()
     local backup_path=$1
     local dir_name=`echo ${backup_path##*/}`
     local pre_dir=`echo ${backup_path}|sed 's/'${dir_name}'//g'`
-    tar zcf ${CURRENT_BACKUP_HOME}${dir_name}-${BACKUP_TIME}.tar.gz -C ${pre_dir} ${dir_name} --exclude-dir=${EXCLUDE_DIR}
+    local exclude=''
+    for dir in ${EXCLUDE_DIR[@]};do
+       exclude=${exclude}' --exclude='${dir}
+    done
+    tar zcf ${CURRENT_BACKUP_HOME}${dir_name}-${BACKUP_TIME}.tar.gz -C ${pre_dir} ${dir_name} ${exclude}
 }
 
 function backup_sql()
