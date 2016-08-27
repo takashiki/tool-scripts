@@ -7,7 +7,7 @@
 #IMPORTANT!!!Please Setting the following Values!
 
 readonly LOGS=("/data/wwwlogs/frontend-access.log" "/data/wwwlogs/*nginx.log" "/data/wwwlogs/main")
-readonly BAK_DIR="/data/wwwlogs/bak/"
+readonly BAK_DIR="/data/wwwlogs/bak/"$(date -d "yesterday" +"%Y%m")"/"
 readonly PID_FILE="/var/run/nginx.pid"
 
 function process_path()
