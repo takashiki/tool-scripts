@@ -31,7 +31,6 @@ foreach ($bookmarkGroups as $k => $group) {
     }
 
     $res = parse($group['children']);
-var_dump($res['markdown']);
     file_put_contents($outputFile, $res['markdown']);
     if ($doClear) {
         $bookmarkGroups[$k]['children'] = $res['trimArr'];
