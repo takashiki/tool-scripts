@@ -2,7 +2,7 @@
 
 #Funcion: backup archives and mysql database
 #Author: takashiki
-#Website: http://blog.skyx.in
+#Website: https://qxzzf.com
 
 #IMPORTANT!!!Please Setting the following Values!
 
